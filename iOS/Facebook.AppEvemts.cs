@@ -9,16 +9,16 @@
     public partial class Facebook
     {
         public static void FacebookAutoLogAppEventsEnabled(bool enable) => SDK.Settings.AutoLogAppEventsEnabled = enable;
-        
+
         public static void EnableUpdatesOnAccessTokenChange(bool enable) => SDK.Profile.EnableUpdatesOnAccessTokenChange(enable: enable);
 
         public static void SetAdvertiserIDCollectionEnabled(bool enable) => SDK.Settings.AdvertiserIdCollectionEnabled = enable;
 
-        public static void ActivateAppEvents() => SDK.AppEvents.ActivateApp();
+        public static void ActivateAppEvents() => SDK.AppEvents.Shared.ActivateApp();
 
         public static void CallEvent(EventNames eventName, Dictionary<ParameterNames, object> @params, double? valueToSum = null)
         {
-            var keys = @params.Select(x => Enum.GetName(typeof(SDK.AppEventParameterName),x.Key.ToParameterName())).ToArray();
+            var keys = @params.Select(x => Enum.GetName(typeof(SDK.AppEventParameterName), x.Key.ToParameterName())).ToArray();
             var values = @params.Select(x => NSObject.FromObject(x.Value)).ToArray();
 
             var param = NSDictionary.FromObjectsAndKeys(values, keys);

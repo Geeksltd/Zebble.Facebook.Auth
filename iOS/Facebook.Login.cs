@@ -7,6 +7,7 @@
     using Newtonsoft.Json.Linq;
     using UIKit;
     using Olive;
+    using global::Facebook.CoreKit;
 
     public partial class Facebook
     {
@@ -43,7 +44,7 @@
 
             var param = NSDictionary.FromObjectAndKey(CurrentParameters.ToString(",").ToNs(), "fields".ToNs());
             var request = new SDK.CoreKit.GraphRequest("me", param, accessToken.TokenString, null, "GET");
-            request.Start(new SDK.CoreKit.GraphRequestBlockHandler(GraphCallback));
+            request.Start(new SDK.CoreKit.GraphRequestCompletionHandler(GraphCallback));
 
             UserInfoFetched.ClearHandlers();
             UserInfoFetched.Handle(onCompleted);
@@ -96,7 +97,7 @@
 
                     var param = NSDictionary.FromObjectAndKey(CurrentParameters.ToString(",").ToNs(), "fields".ToNs());
                     var request = new SDK.CoreKit.GraphRequest("me", param, accessToken.TokenString, null, "GET");
-                    request.Start(new SDK.CoreKit.GraphRequestBlockHandler(GraphCallback));
+                    request.Start(new SDK.CoreKit.GraphRequestCompletionHandler(GraphCallback));
                 }
                 catch (Exception e)
                 {
@@ -106,7 +107,7 @@
             }
         }
 
-        static async void GraphCallback(SDK.CoreKit.GraphRequestConnection connection, NSObject result, NSError error)
+        static async void GraphCallback(IGraphRequestConnecting? connection, NSObject? result, NSError? error)
         {
             if (error == null)
             {

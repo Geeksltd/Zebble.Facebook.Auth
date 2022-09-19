@@ -6,7 +6,7 @@
     <RootNamespace>Zebble</RootNamespace>
     <PackageId>Zebble.Facebook.Auth</PackageId>
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
-    <Version>2.1.458.0</Version>
+    <Version>2.1.459.0</Version>
     <PackOnBuild>true</PackOnBuild>
     <NeutralLanguage>en</NeutralLanguage>
     <DefineConstants>$(DefineConstants)</DefineConstants>
@@ -52,11 +52,11 @@
     <Compile Include="UWP\**\*.cs" />
   </ItemGroup>
   <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
-    <PackageReference Include="Xamarin.Facebook.Android" Version="7.1.0" />
+    <PackageReference Include="Xamarin.Facebook.Android" Version="11.2.0.1" />
     <Compile Include="Android\**\*.cs" />
   </ItemGroup>
   <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
-    <PackageReference Include="Xamarin.Facebook.iOS" Version="7.1.1" />
+    <PackageReference Include="Xamarin.Facebook.iOS" Version="12.2.0.1" />
     <Compile Include="iOS\**\*.cs" />
   </ItemGroup>
   <ItemGroup>
